@@ -3,6 +3,7 @@ from tkinter import filedialog
 import tkinter.messagebox as msg
 #import mysqlcmd
 import hashlib
+import authentification
 
 class Auth(tk.Tk):
 
@@ -48,9 +49,12 @@ class Auth(tk.Tk):
         password = self.password.get()
         if login != "" and password != "":
             password = self.hashfunc(password)
-            print(password)
-            self.destroy()
-            Action()
+            self.status = authentification.authentification((login, password))
+            if self.status == 1:
+                msg.showerror("Erreur", "\rMauvais couple login/mot de passe")
+            else:
+                self.destroy()
+                Action()
         else:
             print("pas d'accord")
 
@@ -71,8 +75,8 @@ class Action(tk.Tk):
         self.menu = tk.Menu(self)
 
         self.menu1 = tk.Menu(self.menu, tearoff=0)
-        self.menu1.add_command(label="Choisir un document", command=self.file_open)
-        self.menu1.add_command(label="Récupérer un document", command=self.file_select)
+        self.menu1.add_command(label="Upload", command=self.file_open)
+        self.menu1.add_command(label="Download", command=self.file_select)
         self.menu.add_cascade(label="Fichier", menu=self.menu1)
 
         self.menu2 = tk.Menu(self.menu, tearoff=0)

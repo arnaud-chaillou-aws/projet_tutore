@@ -9,6 +9,10 @@ class users(SQLObject):
     password = StringCol()
     nb_fichier = IntCol()
 
+class sondes(SQLObject):
+    id_sonde = StringCol()
+    nb_files = IntCol()
+
 def insert(kwargs, table):
     return table(**kwargs)
 
@@ -23,15 +27,24 @@ def createTable():
     try :
         users.createTable()
     except:
-        print("can't create users")
+        pass
+
+    try :
+        sondes.createTable()
+    except:
+        pass
 createTable()
 
 #print (__name__)
-# if __name__ == '__main__':
-#     name = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-#     samplename = {
-# 	   'name': name
-#     }
-#     """rep = select(samplename, fromclient)
-#     x = rep.nb_capture
-#     print(x)"""
+if __name__ == '__main__':
+
+    log = "test"
+    passwd = "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+    samplename = {
+ 	   'user': log,
+       'password': passwd
+     }
+
+    rep = select(samplename, users)
+    x = rep
+    print(x)

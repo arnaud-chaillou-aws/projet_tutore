@@ -1,25 +1,19 @@
 from tkinter import *
+from tkinter.messagebox import *
+
+def premier_bouton():
+    add()
+
+def add():
+    label = Label(fenetre, text="\rLogin", bg="light grey")
+    label.pack()
+
 
 fenetre = Tk()
-def premier_bouton():
-    validlogin()
-    validpassword()
-
-def validlogin():
-    loginval = login.get()
-    if loginval == "":
-        pass
-    else:
-        print(loginval)
-def validpassword():
-    passwordval = password.get()
-    if passwordval == "":
-        pass
-    else:
-        print(passwordval)
-
+fenetre.title("hehe")
+fenetre.geometry("400x500")
 # premier message
-label = Label(fenetre, text="Une authentification est requise", bg="light grey")
+label = Label(fenetre, text="Une fenetre est requise", bg="light grey")
 label.pack()
 
 #message login
@@ -45,6 +39,9 @@ label.pack()
 #Bouton validé
 bouton = Button(fenetre, text="Valider", command=premier_bouton)
 bouton.pack()
+
+
+
 
 def main():
     fenetre.mainloop()
