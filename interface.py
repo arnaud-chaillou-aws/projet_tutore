@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 import tkinter.messagebox as msg
 #import mysqlcmd
-import hashlib
+import crypto
 import authentification
 
 class Auth(tk.Tk):
@@ -11,7 +11,7 @@ class Auth(tk.Tk):
         super().__init__()
 
         self.title("authentification")
-        self.geometry("400x200")
+        self.geometry("400x250")
 
         #Message n°1
         self.label = tk.Label(self, text="Une authentification est requise", bg="light grey").pack()
@@ -25,7 +25,7 @@ class Auth(tk.Tk):
         self.login = tk.Entry(self, textvariable=self.value)
         self.login.pack()
 
-        #Demance password
+        #Demande password
         self.label = tk.Label(self, text="\rPassword", bg="light grey").pack()
 
         #Champ mot de passe
@@ -33,6 +33,16 @@ class Auth(tk.Tk):
         self.value.set("")
         self.password = tk.Entry(self,textvariable=self.value, show='*')
         self.password.pack()
+
+        #Demande network
+        self.label = tk.Label(self, text="\rid reseau", bg="light grey").pack()
+
+        #Champ id reseau
+
+        self.value = tk.StringVar()
+        self.value.set("")
+        self.id_reseau = tk.Entry(self,textvariable=self.value, show='*')
+        self.id_reseau.pack()
 
         #Vide
         self.label = tk.Label(self, text="\r", bg="light grey").pack()
@@ -47,22 +57,17 @@ class Auth(tk.Tk):
     def bouton_valider(self):
         login = self.login.get()
         password = self.password.get()
-        if login != "" and password != "":
-            password = self.hashfunc(password)
+        id_reseau = self.id_reseau.get()
+        if login != "" and password != "" and id_reseau != "":
+            password = crypto.pbkdf2(password)
             self.status = authentification.authentification((login, password))
             if self.status == 1:
-                msg.showerror("Erreur", "\rMauvais couple login/mot de passe")
+                msg.showerror("Erreur", "\rMauvais couple login/mot de passe/reseau")
             else:
                 self.destroy()
                 Action()
         else:
-            print("pas d'accord")
-
-    def hashfunc(self, string):
-        string = string.encode("utf-8")
-        h = hashlib.sha256()
-        h.update(string)
-        return h.hexdigest()
+            msg.showerror("Erreur", "\rRenseigner un login et un mot de passe et un reseau")
 
 class Action(tk.Tk):
     def __init__(self):

@@ -9,9 +9,17 @@ class users(SQLObject):
     password = StringCol()
     nb_fichier = IntCol()
 
-class sondes(SQLObject):
+class noeud(SQLObject):
     id_sonde = StringCol()
     nb_files = IntCol()
+
+class networks(SQLObject):
+    id_network = StringCol
+    network_king_id = StringCol()
+
+class networks_status(SQLObject):
+    id_network = StringCol()
+    networks_status = StringCol()
 
 def insert(kwargs, table):
     return table(**kwargs)
@@ -30,7 +38,17 @@ def createTable():
         pass
 
     try :
-        sondes.createTable()
+        noeud.createTable()
+    except:
+        pass
+
+    try :
+        networks.createTable()
+    except:
+        pass
+
+    try :
+        networks_status.createTable()
     except:
         pass
 createTable()
