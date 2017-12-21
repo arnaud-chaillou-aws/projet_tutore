@@ -1,6 +1,4 @@
-import os
-
-if os.path.exists("/home/arnaud/toto.txt"):
-    print("ok")
-else:
-    print("pas d'accord")
+i = 0
+while i != 5:
+    print(i)
+    i+=1

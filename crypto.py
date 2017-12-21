@@ -1,18 +1,36 @@
 import hashlib
+import sys
+import base64
 import binascii
 import rsa
 import os
+import ssl
+from Crypto.Cipher import AES
 
-def pbkdf2(password):
-    bpassword = password.encode("utf-8")
-    salt = hashlib.sha256()
-    salt.update(bpassword)
-    rsalt = salt.hexdigest()
-    rsalt = rsalt.encode("utf-8")
-    h=hashlib.pbkdf2_hmac('sha512', bpassword, rsalt, 10000)
-    tmp = binascii.hexlify(h)
-    tmp = tmp.decode()
-    return tmp
+def reciever(conn):
+    buffer = b''
+    data = b''
+    while data != b'\n':
+        buffer += data
+        data = conn.recv(1)
+    buffer = base64.b64decode(buffer)
+    return buffer.decode()
+
+class Hash(object):
+    def __init__(self):
+        self.output = ""
+        #self.pbkdf2("input")
+
+    def pbkdf2(self, input):
+        bpassword = input.encode("utf-8")
+        salt = hashlib.sha256()
+        salt.update(bpassword)
+        rsalt = salt.hexdigest()
+        rsalt = rsalt.encode("utf-8")
+        h=hashlib.pbkdf2_hmac('sha512', bpassword, rsalt, 10000)
+        self.output = binascii.hexlify(h)
+        self.output = self.output.decode()
+        return self.output
 
 class Keys():
     def __init__(self):
@@ -22,22 +40,20 @@ class Keys():
 
     def keycheck(self):
         if not os.path.exists("/etc/ema/pubkey.pem") or not os.path.exists("/etc/ema/privkey.pem"):
-            print("la")
             self.keygen()
         else:
-            print("ici")
             self.keyload()
 
 
     def keygen(self):
-        pubkey, privkey = rsa.newkeys(2048)
+        self.pubkey, self.privkey = rsa.newkeys(2048)
         pubk = open("/etc/ema/pubkey.pem","wb")
-        pub = rsa.PublicKey.save_pkcs1(pubkey, format = 'PEM')
+        pub = rsa.PublicKey.save_pkcs1(self.pubkey, format = 'PEM')
         pubk.write(pub)
         pubk.close()
 
         privk = open("/etc/ema/privkey.pem","wb")
-        priv = rsa.PrivateKey.save_pkcs1(privkey, format = 'PEM')
+        priv = rsa.PrivateKey.save_pkcs1(self.privkey, format = 'PEM')
         privk.write(priv)
         privk.close()
 
@@ -50,7 +66,38 @@ class Keys():
         priv = privk.read()
         self.privkey = rsa.PrivateKey.load_pkcs1(priv, format = 'PEM')
 
+class AESCipher(object):
+    def __init__(self, key):
+        self.bs = 16
+        self.cipher = AES.new(key, AES.MODE_ECB)
+
+    def encrypt(self, raw):
+        raw = self._pad(raw)
+        encrypted = self.cipher.encrypt(raw)
+        encoded = base64.b64encode(encrypted)
+        return str(encoded, "utf-8")
+
+    def decrypt(self, raw):
+        decoded = base64.b64decode(raw)
+        decrypted = self.cipher.decrypt(decoded)
+        return str(self._unpad(decrypted), 'utf-8')
+
+    def _pad(self, s):
+        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+
+    def _unpad(self, s):
+        return s[:-ord(s[len(s)-1:])]
+
+
 keys = Keys()
-#keycheck()
 if __name__ == "__main__":
-    print(keys)
+    key = ssl.RAND_bytes(32)
+    print(key)
+    cipher = AESCipher(key)
+
+    #plaintext = '542#1504891440039'
+    plaintext = 'ahahah'
+    encrypted = cipher.encrypt(plaintext)
+    print('Encrypted: %s' % encrypted)
+    decrypted = cipher.decrypt(encrypted)
+    print('Decrypted: %s' % decrypted)

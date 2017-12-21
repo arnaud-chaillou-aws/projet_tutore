@@ -59,7 +59,9 @@ class Auth(tk.Tk):
         password = self.password.get()
         id_reseau = self.id_reseau.get()
         if login != "" and password != "" and id_reseau != "":
-            password = crypto.pbkdf2(password)
+            hashing = crypto.Hash()
+            password = hashing.pbkdf2(password)
+            print(password)
             self.status = authentification.authentification((login, password))
             if self.status == 1:
                 msg.showerror("Erreur", "\rMauvais couple login/mot de passe/reseau")
