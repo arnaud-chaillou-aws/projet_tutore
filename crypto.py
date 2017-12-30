@@ -22,6 +22,7 @@ class Hash(object):
         #self.pbkdf2("input")
 
     def pbkdf2(self, input):
+        input = str(input)
         bpassword = input.encode("utf-8")
         salt = hashlib.sha256()
         salt.update(bpassword)
@@ -88,14 +89,11 @@ class AESCipher(object):
     def _unpad(self, s):
         return s[:-ord(s[len(s)-1:])]
 
-
 keys = Keys()
 if __name__ == "__main__":
     key = ssl.RAND_bytes(32)
     print(key)
     cipher = AESCipher(key)
-
-    #plaintext = '542#1504891440039'
     plaintext = 'ahahah'
     encrypted = cipher.encrypt(plaintext)
     print('Encrypted: %s' % encrypted)

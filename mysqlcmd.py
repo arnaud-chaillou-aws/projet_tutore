@@ -8,18 +8,19 @@ class users(SQLObject):
     user = StringCol()
     password = StringCol()
     nb_fichier = IntCol()
+    email = StringCol()
 
 class noeud(SQLObject):
-    id_sonde = StringCol()
+    sonde_ip = StringCol()
+    sonde_id = StringCol()
     nb_files = IntCol()
 
 class networks(SQLObject):
-    id_network = StringCol
-    network_king_id = StringCol()
+    self_id = StringCol()
+    network_id = StringCol()
+    network_master_id = StringCol()
+    network_password = StringCol()
 
-class networks_status(SQLObject):
-    id_network = StringCol()
-    networks_status = StringCol()
 
 def insert(kwargs, table):
     return table(**kwargs)
@@ -47,10 +48,6 @@ def createTable():
     except:
         pass
 
-    try :
-        networks_status.createTable()
-    except:
-        pass
 createTable()
 
 #print (__name__)
@@ -63,6 +60,6 @@ if __name__ == '__main__':
        'password': passwd
      }
 
-    rep = select(samplename, users)
-    x = rep
-    print(x)
+    #rep = select(samplename, users)
+    #x = rep
+    #print(x)

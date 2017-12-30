@@ -4,6 +4,144 @@ import tkinter.messagebox as msg
 #import mysqlcmd
 import crypto
 import authentification
+import fonctions
+import communication
+
+class Homepage(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Menu")
+        self.geometry("400x300")
+
+        self.label1 = tk.Label(self, text ="\nVeuiller choisir une action :").pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.create_user_bouton = tk.Button(self, text="Create user", command=self.createuserform)
+        self.create_user_bouton.pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.create_network_bouton = tk.Button(self, text="Create network", command=self.createnetworkform)
+        self.create_network_bouton.pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.join_network_bouton = tk.Button(self, text="Join network", command=self.joinnetwork)
+        self.join_network_bouton.pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.authentification_form_bouton = tk.Button(self, text="Authentification", command=self.authentification_form)
+        self.authentification_form_bouton.pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.mainloop()
+
+    def authentification_form(self):
+        self.destroy()
+        Auth()
+
+    def joinnetwork(self):
+        JoinNetwork(self)
+
+    def createnetworkform(self):
+        CreateNetwork(self)
+
+    def createuserform(self):
+        CreateUser(self)
+
+class JoinNetwork(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__()
+
+        self.master = master
+        self.title("Join Network")
+        self.geometry("350x200")
+
+        self.label1 = tk.Label(self, text = "Veuiller renseigner l'ip du master l'id du reseau et le mot de passe du reseau:").pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.master_ip = tk.Label(self, text="Ip master ?")
+        self.master_ip_entrer = tk.Entry(self, bg="white", fg="black")
+        self.id_reseau = tk.Label(self, text="Id reseau ?")
+        self.id_reseau_entrer = tk.Entry(self, bg="white", fg="black")
+        self.password = tk.Label(self, text="Mot de passe réseau")
+        self.password_entrer = tk.Entry(self, bg="white", fg="black", show='*')
+        self.valid_buttom = tk.Button(self, text="Valider", command=self.valider)
+
+        self.master_ip.pack(fill=tk.BOTH, expand=1)
+        self.master_ip_entrer.pack(fill=tk.BOTH, expand=1)
+        self.id_reseau.pack(fill=tk.BOTH, expand=1)
+        self.id_reseau_entrer.pack(fill=tk.BOTH, expand=1)
+        self.password.pack(fill=tk.BOTH, expand=1)
+        self.password_entrer.pack(fill=tk.BOTH, expand=1)
+        self.valid_buttom.pack(fill=tk.X)
+
+    def valider(self):
+        pass
+
+class CreateNetwork(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__()
+
+        self.master = master
+        self.title("Create Network")
+        self.geometry("250x150")
+
+        self.label1 = tk.Label(self, text = "Veuiller renseigner le mot de passe :")
+        self.password_entrer = tk.Entry(self, bg="white", fg="black", show='*')
+        self.valid_buttom = tk.Button(self, text="Valider", command=self.valider)
+
+        self.label1.pack(fill=tk.BOTH, expand=1)
+        self.password_entrer.pack(fill=tk.BOTH, expand=1)
+        self.valid_buttom.pack(fill=tk.X)
+
+    def valider(self):
+        password = str(self.password_entrer.get())
+        if password == "":
+            msg.showerror("Erreur", "Veuillez entrer un mot de passe")
+        else:
+            state, network_id = fonctions.createnetwork(password)
+            if state == 0:
+                msg.showinfo("Validation", "Le réseau à bien été ajouté à la base de donnée local\nL'id reseau est : %s" % (network_id))
+            else:
+                msg.showerror("Erreur", "Erreur lors de la création du réseau veuillez réessayer")
+        self.destroy()
+
+class CreateUser(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__()
+
+        self.master = master
+        self.title("Create user")
+        self.geometry("400x300")
+
+        self.label1 = tk.Label(self, text ="Veuiller renseigner les informations suivante:").pack()
+        self.videlabel = tk.Label(self, text = "\n").pack()
+        self.username = tk.Label(self, text="Username ?")
+        self.username_entrer = tk.Entry(self, bg="white", fg="black")
+        self.password = tk.Label(self, text="Password ?")
+        self.password_entrer = tk.Entry(self, bg="white", fg="black", show='*')
+        self.email = tk.Label(self, text="Addresse email ? \r(optionnel)")
+        self.email_entrer = tk.Entry(self, bg="white", fg="black")
+        self.valid_buttom = tk.Button(self, text="Valider", command=self.valider)
+
+        self.username.pack(fill=tk.BOTH, expand=1)
+        self.username_entrer.pack(fill=tk.BOTH, expand=1)
+        self.password.pack(fill=tk.BOTH, expand=1)
+        self.password_entrer.pack(fill=tk.BOTH, expand=1)
+        self.email.pack(fill=tk.BOTH, expand=1)
+        self.email_entrer.pack(fill=tk.BOTH, expand=1)
+        self.valid_buttom.pack(fill=tk.X)
+
+    def valider(self):
+        username = self.username_entrer.get()
+        password = self.password_entrer.get()
+        email = self.email_entrer.get()
+        if email == "":
+            email = "Non renseigné"
+
+        if username == "" or password == "":
+            msg.showerror("Erreur", "Veuillez entrer un Username et un mot de passe")
+        else:
+            state = fonctions.createuser(username, password, email)
+            if state == 0:
+                msg.showinfo("Validation", "Vous avez bien été ajouté a la base de donnée local")
+
+            else:
+                msg.showerror("Erreur", "Username déjà utilisé")
+        self.destroy()
 
 class Auth(tk.Tk):
 
@@ -14,10 +152,10 @@ class Auth(tk.Tk):
         self.geometry("400x250")
 
         #Message n°1
-        self.label = tk.Label(self, text="Une authentification est requise", bg="light grey").pack()
+        self.label = tk.Label(self, text="Une authentification est requise").pack()
 
         #Demande login
-        self.label = tk.Label(self, text="\rLogin", bg="light grey").pack()
+        self.label = tk.Label(self, text="\rLogin").pack()
 
         #Champ login
         self.value = tk.StringVar()
@@ -26,7 +164,7 @@ class Auth(tk.Tk):
         self.login.pack()
 
         #Demande password
-        self.label = tk.Label(self, text="\rPassword", bg="light grey").pack()
+        self.label = tk.Label(self, text="\rPassword").pack()
 
         #Champ mot de passe
         self.value = tk.StringVar()
@@ -35,7 +173,7 @@ class Auth(tk.Tk):
         self.password.pack()
 
         #Demande network
-        self.label = tk.Label(self, text="\rid reseau", bg="light grey").pack()
+        self.label = tk.Label(self, text="\rid reseau").pack()
 
         #Champ id reseau
 
@@ -45,7 +183,7 @@ class Auth(tk.Tk):
         self.id_reseau.pack()
 
         #Vide
-        self.label = tk.Label(self, text="\r", bg="light grey").pack()
+        self.label = tk.Label(self, text="\r").pack()
 
         #Bouton Valider
         self.bouton = tk.Button(self, text="Valider", command=self.bouton_valider)
@@ -133,4 +271,8 @@ class FileSelectionForm(tk.Toplevel):
         self.destroy()
 
 if __name__ == "__main__":
-    Auth()
+    try:
+        clt = communication.Client('localhost', 1337)
+        Homepage()
+    except:
+        print("Service isn't started")
