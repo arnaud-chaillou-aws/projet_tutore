@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 import tkinter.messagebox as msg
-#import mysqlcmd
+import pyperclip
 import crypto
 import authentification
 import fonctions
@@ -50,12 +50,14 @@ class JoinNetwork(tk.Toplevel):
         self.title("Join Network")
         self.geometry("350x200")
 
-        self.label1 = tk.Label(self, text = "Veuiller renseigner l'ip du master l'id du reseau et le mot de passe du reseau:").pack()
+        self.label1 = tk.Label(self, text = "Veuiller renseigner l'ip d'un noeud, l'id du reseau, votre ip et le mot de passe du reseau:").pack()
         self.videlabel = tk.Label(self, text = "\n").pack()
-        self.master_ip = tk.Label(self, text="Ip master ?")
+        self.master_ip = tk.Label(self, text="Ip noeud ?")
         self.master_ip_entrer = tk.Entry(self, bg="white", fg="black")
         self.id_reseau = tk.Label(self, text="Id reseau ?")
         self.id_reseau_entrer = tk.Entry(self, bg="white", fg="black")
+        self.ip_client = tk.Label(self, text="votre ip ?")
+        self.ip_client_entrer = tk.Entry(self, bg="white", fg="black")
         self.password = tk.Label(self, text="Mot de passe réseau")
         self.password_entrer = tk.Entry(self, bg="white", fg="black", show='*')
         self.valid_buttom = tk.Button(self, text="Valider", command=self.valider)
@@ -64,6 +66,8 @@ class JoinNetwork(tk.Toplevel):
         self.master_ip_entrer.pack(fill=tk.BOTH, expand=1)
         self.id_reseau.pack(fill=tk.BOTH, expand=1)
         self.id_reseau_entrer.pack(fill=tk.BOTH, expand=1)
+        self.ip_client.pack(fill=tk.BOTH, expand=1)
+        self.ip_client_entrer.pack(fill=tk.BOTH, expand=1)
         self.password.pack(fill=tk.BOTH, expand=1)
         self.password_entrer.pack(fill=tk.BOTH, expand=1)
         self.valid_buttom.pack(fill=tk.X)
@@ -79,22 +83,31 @@ class CreateNetwork(tk.Toplevel):
         self.title("Create Network")
         self.geometry("250x150")
 
-        self.label1 = tk.Label(self, text = "Veuiller renseigner le mot de passe :")
+        self.label1 = tk.Label(self, text = "Veuiller renseigner le mot de passe et le nombre maximal de noeud du reseau:")
+        self.labelmaxnode = tk.Label(self, text = "Nombre de noeud maximal ?").pack()
+        self.maxnode_entrer = tk.Entry(self, bg="white", fg="black")
+        self.labelpassword = tk.Label(self, text = "Mot de passe ?").pack()
         self.password_entrer = tk.Entry(self, bg="white", fg="black", show='*')
         self.valid_buttom = tk.Button(self, text="Valider", command=self.valider)
 
         self.label1.pack(fill=tk.BOTH, expand=1)
+        self.maxnode_entrer.pack(fill=tk.BOTH, expand=1)
         self.password_entrer.pack(fill=tk.BOTH, expand=1)
         self.valid_buttom.pack(fill=tk.X)
 
     def valider(self):
         password = str(self.password_entrer.get())
-        if password == "":
-            msg.showerror("Erreur", "Veuillez entrer un mot de passe")
+        try :
+            maxnode = int(self.password_entrer.get())
+        except:
+            maxnode = 20
+        if password == "" or maxnode > 200:
+            msg.showerror("Erreur", "Veuillez entrer un mot de passe ou un nombre de noeud maximum inferieur a 200")
         else:
-            state, network_id = fonctions.createnetwork(password)
+            state, network_id = fonctions.createnetwork(password, maxnode)
             if state == 0:
                 msg.showinfo("Validation", "Le réseau à bien été ajouté à la base de donnée local\nL'id reseau est : %s" % (network_id))
+                pyperclip.copy(network_id)
             else:
                 msg.showerror("Erreur", "Erreur lors de la création du réseau veuillez réessayer")
         self.destroy()
@@ -270,9 +283,21 @@ class FileSelectionForm(tk.Toplevel):
         print(code_fichier)
         self.destroy()
 
+class HelpMe():
+    def __init__(self):
+        self.FileSelectionForm = ("Pop-up bouton download")
+        self.Action = ("Fenetre post authentification, bouton upload inclu dans la classe")
+        self.Auth = ("Fenetre d'authentification, utilise authentification.py et crypto.py")
+        self.CreateUser = ("Fenetre create user classe enfant de Homepage")
+        self.CreateNetwork = ("Fenetre creation du reseau classe enfant de Homepage")
+        self.JoinNetwork = ("Fenetre connexion a un réseau classe enfant de Homepage")
+        self.Homepage = ("Page d'aceuille principale")
+
+    def __str__(self):
+        return("Fonctions explique : FileSelectionForm, Action, Auth, CreateUser, CreateNetwork, JoinNetwork, Homepage")
 if __name__ == "__main__":
     try:
-        clt = communication.Client('localhost', 1337)
+        clt = communication.Client('localhost')
         Homepage()
     except:
         print("Service isn't started")

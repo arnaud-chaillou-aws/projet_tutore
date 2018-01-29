@@ -4,6 +4,8 @@ import time
 import mysqlcmd
 import crypto
 import sys
+import communication
+import pickle
 
 def randomname():
     a = str(time.time())
@@ -30,7 +32,7 @@ def createuser(username, password, email):
         mysqlcmd.insert(newuser, mysqlcmd.users)
         return 0
 
-def createnetwork(password): #Création d'un réseau
+def createnetwork(password, maxnode): #Création d'un réseau
     network_id = str(randomname())
     self_id = "A1"
     hasher = crypto.Hash()
@@ -42,14 +44,38 @@ def createnetwork(password): #Création d'un réseau
         'self_id': self_id,
         'network_id': network_id,
         'network_master_id': self_id,
-        'network_password': ntwpassword
+        'network_password': ntwpassword,
+        'maxnode': maxnode
+    }
+    newsonde = {
+        'sonde_ip': '127.0.0.1',
+        'sonde_id': 'A1',
+        'network': network_id,
+        'nb_files': 0
     }
     try:
         tmp = mysqlcmd.select(selector, mysqlcmd.networks)
         return 2, None
     except:
         mysqlcmd.insert(newnetwork, mysqlcmd.networks)
+        mysqlcmd.insert(newsonde, mysqlcmd.noeud)
         return 0, network_id
+
+def joinnetwork(master_ip, id_reseau, password, ip):
+    clt = communication.Client(master_ip)
+    data = {
+        'id_reseau': id_reseau,
+        'password': password,
+        'ip': ip
+    }
+    communication.ssender("\x02", clt.cosck, clt.aeskey)
+    data = pickle.dumps(data)
+    communication.ssender(data, clt.csock, clt.aeskey)
+    rep = communication.sreciever(clt.csock, clt.aeskey)
+    if rep == "\x02":
+        return 2
+    else:
+        return 0
 
 class HelpMe():
     def __init__(self):
