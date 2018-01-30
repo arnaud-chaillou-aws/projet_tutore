@@ -1,4 +1,5 @@
 import socket as s
+import time
 import threading
 import base64
 import crypto
@@ -7,6 +8,7 @@ import ssl
 import os
 import signal
 import mysqlcmd
+import json
 
 def sender(data, socket):
 	data = str(data)
@@ -44,25 +46,21 @@ def sreciever(socket, key):
 	return decrypted
 
 class Client(object):
-	def __init__(self, host):
-		print("ici")
-		self.port = 1337
+	def __init__(self, host, code, data, port = 1337):
+		self.port = port
+		self.code = code
+		self.data = data
 		self.aeskey = ""
 		self.host = host
-		print("la")
 		self.csock = s.socket(s.AF_INET, s.SOCK_STREAM)
-		print("lala")
 		try:
-			print("hihi")
 			self.csock.settimeout(15)
 			self.csock.connect((self.host, self.port))
-			print("connexion réussi")
 		except:
-			print("hoho")
 			print("can't connect to destination %s on port %d" % (self.host, 1337))
 			#os.killpg(os.getpid(), signal.SIGTERM)
 		self.setuptls()
-		self.securesynack()
+		self.send()
 
 	def setuptls(self):
 		ownpub = crypto.keys.pubkey
@@ -79,19 +77,18 @@ class Client(object):
 		spk = rsa.decrypt(espk.encode('iso-8859-1'), ownpriv)
 		self.aeskey = cpk + spk
 
-	def securesynack(self):
-		ssender("syn", self.csock, self.aeskey)
-		rep = sreciever(self.csock, self.aeskey)
+	def send(self):
+		ssender(json.dumps({"code": self.code, "data": self.data}), self.csock, self.aeskey)
 
 	def askpid(self):
-		ssender('\x01', self.csock, self.aeskey)
+		ssender(1, self.csock, self.aeskey)
 		pid = sreciever(self.csock, self,aeskey)
 		return pid
 
 class Serveur(object):
-	def __init__(self):
+	def __init__(self, port = 1337):
 		self.aeskey = ""
-		self.port = 1337
+		self.port = port
 		self.ssock = s.socket(s.AF_INET, s.SOCK_STREAM)
 		self.serveur()
 
@@ -103,23 +100,23 @@ class Serveur(object):
 				break
 			self.ssock.listen(20)
 			while (1):
-				(self.conn, (ip, port)) = self.ssock.accept()
-				newthread = threading.Thread(target = self.reception())
+				(conn, (ip, port)) = self.ssock.accept()
+				newthread = threading.Thread(target = self.reception(conn))
 
 
-	def reception(self):
-		self.setuptls()
-		self.securesynack()
-		self.waiting()
+	def reception(self, conn):
+		self.setuptls(conn)
+		self.receiv(conn)
 
-	def waiting(self):
-		commande = sreciever(self.conn, self.aeskey)
-		if commande == '\x01': #service stop
+	def working(self, conn, code, data):
+		if code == 1: #service stop
 			pid = os.getpid()
-			ssender(pid, self.conn, self.aeskey)
+			print("1")
+			ssender(pid, conn, self.aeskey)
+			print("2")
 
-		elif commande == '\x02': #Join network
-			data = sreciever(self.conn, self.aeskey) #reception data
+		elif code == 2: #Join network
+			#data = sreciever(conn, self.aeskey) #reception data
 			data = data.loads(data) #transformation des data en dictionaire
 			select1 = {
 				'network': data["id_reseau"]
@@ -134,7 +131,7 @@ class Serveur(object):
 				hasher = crypto.Hash()
 				hpassword = hasher.pbkdf2(data["password"])
 				if hpassword == tmp.network_password:
-					ssender("\x01", self.conn, self.aeskey)
+					ssender(1, conn, self.aeskey)
 					tmp4 = 1
 					tmp = 1
 					tmp2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -154,29 +151,33 @@ class Serveur(object):
 						}
 					mysqlcmd.insert(insertor, mysqlcmd.noeud)
 				else:
-					ssender("\x02", self.conn, self.aeskey)
+					ssender(2, conn, self.aeskey)
 			else:
-				ssender("\x02", self.conn, self.aeskey)
-		elif commande == '\x03': #ping
-			self.conn.close()
+				ssender(2, conn, self.aeskey)
 
-	def securesynack(self):
-		rep = sreciever(self.conn, self.aeskey)
-		ssender("ack", self.conn, self.aeskey)
+		elif code == 3: #ping
+			print("ping")
+			conn.close()
 
-	def setuptls(self):
+	def receiv(self, conn):
+		rep = json.loads(sreciever(conn, self.aeskey))
+		code = rep['code']
+		data = rep['data']
+		self.working(conn, code, data)
+
+	def setuptls(self, conn):
 		ownpub = crypto.keys.pubkey
 		ownpriv = crypto.keys.privkey
-		friendn = reciever(self.conn)
-		friende = reciever(self.conn)
-		sender(str(ownpub.n), self.conn)
-		sender(str(ownpriv.e), self.conn)
+		friendn = reciever(conn)
+		friende = reciever(conn)
+		sender(str(ownpub.n), conn)
+		sender(str(ownpriv.e), conn)
 		self.friendpub = rsa.key.PublicKey(int(friendn),int(friende))
-		ecpk = reciever(self.conn)
+		ecpk = reciever(conn)
 		cpk = rsa.decrypt(ecpk.encode('iso-8859-1'), ownpriv)
 		spk = ssl.RAND_bytes(16)
 		espk = rsa.encrypt(spk, self.friendpub)
-		sender(espk.decode('iso-8859-1'), self.conn)
+		sender(espk.decode('iso-8859-1'), conn)
 		self.aeskey = cpk + spk
 
 class HelpMe():

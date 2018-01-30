@@ -62,17 +62,15 @@ def createnetwork(password, maxnode): #Création d'un réseau
         return 0, network_id
 
 def joinnetwork(master_ip, id_reseau, password, ip):
-    clt = communication.Client(master_ip)
     data = {
         'id_reseau': id_reseau,
         'password': password,
         'ip': ip
     }
-    communication.ssender("\x02", clt.cosck, clt.aeskey)
     data = pickle.dumps(data)
-    communication.ssender(data, clt.csock, clt.aeskey)
+    clt = communication.Client(master_ip, 2, data)
     rep = communication.sreciever(clt.csock, clt.aeskey)
-    if rep == "\x02":
+    if rep == 2:
         return 2
     else:
         return 0

@@ -7,7 +7,7 @@ import communication
 class blockchain(initialisateur):
     def __init__(self, networkid):
         self.chain = getchain()
-        self.new_data = [{'networks': 'primordial'}, {'noeud': 'primordial'}, {'users': 'primordial'}]
+        self.new_data = [{'networks': {'1': 'primordial'}}, {'noeud': {'1': 'primordial'}}, {'users': {'1': 'primordial'}}]
         self.node = self.getnode(networkid)
         self.new_block(previous_hash=0)
 
