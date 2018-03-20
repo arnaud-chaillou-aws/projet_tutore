@@ -86,7 +86,7 @@ class FileWorker(object):
         """
         try:
             with open(CONFIG.get('backend', 'savepath')+name, "a") as file:
-            file.write(data)
+                file.write(data)
 
         except PermissionError as e:
             log.err("Savepath option pointe vers un repertoire non autorisé", e)
@@ -118,7 +118,7 @@ class DBWorker(object):
         self.__host = CONFIG.get('MySQL', 'host')
         self.__database = CONFIG.get('MySQL', 'database')
 
-        mysql.init(self.__username, self.__password, self.__host, self.__database
+        mysql.init(self.__username, self.__password, self.__host, self.__database)
 
     def decentralization(self, update, network_id, network_password, table):
         CltInterface = ClientInterface(network_id, network_password)
@@ -151,7 +151,6 @@ class DBWorker(object):
         a = dictionnaire[b]
         c = nb-(26*b)
         node_id =  str(a) + str(c)
-
         return 0
 
     # def joinNetwork(self, side):
@@ -257,7 +256,7 @@ class UserInterface(object):
 
     def sendFile(self, path, network_id, network_password, encrypt=True):
         if not self.user:
-            log.err("You must be logged to use theses methode")
+            log.err("You must be logged to use this method")
             return 1
 
         if DBWorker.getNetwork(network_id, network_password) is None:
@@ -279,7 +278,7 @@ class UserInterface(object):
 
     def createUser(self, username, password, network_id, network_password):
         if not self.user:
-            log.err("You must be logged to use theses methode")
+            log.err("You must be logged to use this method")
             return 1
 
         log.msg("Called createUser by", self.user)
@@ -304,7 +303,7 @@ class UserInterface(object):
 
     def createNetwork(self, password, max_agent=50):
         if not self.user:
-            log.err("You must be logged to use theses methode")
+            log.err("You must be logged to use this method")
             return 1
 
         dbconn = DBWorker()
@@ -318,4 +317,20 @@ class UserInterface(object):
         log.msg("Nouveau réseau créé id:{} par {}".format(id, self.user))
         return id
 
-    def joinNetwork(self, side, network_id, network_password, targetlist)
+    def joinNetwork(self, si, network_id, network_password, iplist):
+        if not self.user:
+            log.err("You must be logged to use this method")
+            return 1
+
+        log.msg("Join network used by", self.user)
+        dbconn = DBWorker()
+        if dbconn.getNetwork(network_id, network_password):
+            log.err("Wrong creds for network", network_id)
+            return 1
+
+        for ip in iplist:
+            status = dbconn.createNode(ip, network_id)
+            if not status:
+                log.msg("New node add to {} with the ip {}".format(network_id, ip))
+            else:
+                log.err("Unsuported return for joinNetwork methode", status)
