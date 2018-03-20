@@ -1,0 +1,667 @@
+2018-03-02 14:46:50+0100 [-] Log opened.
+2018-03-02 14:46:50+0100 [-] em2aFactory (TLS) starting on 12345
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/internet/tcp.py:994:startListening
+	/usr/local/lib/python3.5/dist-packages/twisted/python/threadable.py:53:sync
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:286:msg
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:154:publishToNewObserver
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/internet/tcp.py", line 994, in startListening
+	    self._getLogPrefix(self.factory), self._realPortNumber))
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/threadable.py", line 53, in sync
+	    return function(self, *args, **kwargs)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 286, in msg
+	    _publishNew(self._publishPublisher, actualEventDict, textFromEventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 154, in publishToNewObserver
+	    observer(eventDict)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-] Starting factory <server.em2aFactory object at 0x7fbf2da0ccc0>
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/protocols/policies.py:149:doStart
+	/usr/local/lib/python3.5/dist-packages/twisted/internet/protocol.py:76:doStart
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:213:info
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/protocols/policies.py", line 149, in doStart
+	    self.wrappedFactory.doStart()
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/internet/protocol.py", line 76, in doStart
+	    factory=self)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 213, in info
+	    self.emit(LogLevel.info, format, **kwargs)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-] Traceback (most recent call last):
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "daemon.py", line 74, in <module>
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     daemonize()
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "daemon.py", line 68, in daemonize
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     server.init()
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/home/arnaud/projet_tutore/v2/em2a/core/server.py", line 34, in init
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     reactor.listenSSL(12345, em2aFactory(), ssl_context)
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/posixbase.py", line 522, in listenSSL
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     port = self.listenTCP(port, tlsFactory, backlog, interface)
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/posixbase.py", line 495, in listenTCP
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     p.startListening()
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/tcp.py", line 1004, in startListening
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     self.startReading()
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/abstract.py", line 438, in startReading
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     self.reactor.addReader(self)
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/epollreactor.py", line 110, in addReader
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     EPOLLIN, EPOLLOUT)
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]   File "/usr/local/lib/python3.5/dist-packages/twisted/internet/epollreactor.py", line 96, in _add
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-]     self._poller.register(fd, flags)
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:46:50+0100 [-] OSError: [Errno 22] Invalid argument
+2018-03-02 14:46:50+0100 [-] Temporarily disabling observer LegacyLogObserverWrapper(<bound method Colorized.emit of <setuplog.Colorized object at 0x7fbf2da06dd8>>) due to exception: [Failure instance: Traceback: <class 'OSError'>: [Errno 9] Bad file descriptor
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py:170:write
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py:135:emit
+	--- <exception caught here> ---
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py:131:__call__
+	/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py:93:__call__
+	/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py:13:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/log.py:562:emit
+	/usr/local/lib/python3.5/dist-packages/twisted/python/util.py:815:untilConcludes
+	]
+	Traceback (most recent call last):
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_io.py", line 170, in write
+	    self.log.emit(self.level, format=u"{log_io}", log_io=line)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_logger.py", line 135, in emit
+	    self.observer(event)
+	--- <exception caught here> ---
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_observer.py", line 131, in __call__
+	    observer(event)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/logger/_legacy.py", line 93, in __call__
+	    self.legacyObserver(event)
+	  File "/home/arnaud/projet_tutore/v2/em2a/core/setuplog.py", line 13, in emit
+	    log.FileLogObserver.emit(self, eventDict)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/log.py", line 562, in emit
+	    util.untilConcludes(self.write, timeStr + " " + msgStr)
+	  File "/usr/local/lib/python3.5/dist-packages/twisted/python/util.py", line 815, in untilConcludes
+	    return f(*a, **kw)
+	builtins.OSError: [Errno 9] Bad file descriptor
+	
+2018-03-02 14:47:15+0100 [-] Log opened.
+2018-03-02 14:49:21+0100 [-] Log opened.
+2018-03-02 14:51:13+0100 [-] Log opened.
+2018-03-02 14:52:48+0100 [-] Log opened.
+2018-03-02 14:52:48+0100 [-] C PAS b1
+2018-03-02 14:52:48+0100 [-] Traceback (most recent call last):
+2018-03-02 14:52:48+0100 [-]   File "daemon.py", line 75, in <module>
+2018-03-02 14:52:48+0100 [-]     daemonize()
+2018-03-02 14:52:48+0100 [-]   File "daemon.py", line 25, in daemonize
+2018-03-02 14:52:48+0100 [-]     raise DeamonAlreadyOnlineError()
+2018-03-02 14:52:48+0100 [-] __main__.DeamonAlreadyOnlineError
+2018-03-02 14:55:33+0100 [-] Log opened.
+2018-03-02 14:55:55+0100 [-] Log opened.
+2018-03-02 14:56:25+0100 [-] Log opened.
+2018-03-02 14:56:39+0100 [-] Log opened.
+2018-03-02 14:59:32+0100 [-] Log opened.
