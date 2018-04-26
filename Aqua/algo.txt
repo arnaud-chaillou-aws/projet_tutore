@@ -1,0 +1,49 @@
+server-side function order:
+
+
+CLASS em2aServer
+  -connectionmade = je recuperer des info sur le peer
+  -datareceived   = j'accumule les data dans un buffer
+  -connectionlost = je verifie que j'ai bien recu toute mes données et je lance la chaine de callback
+  -handler        = j'identifie le réseau cible et je l'instanci avec l'update et les credential
+
+CLASS networkManager
+
+  -__init__       = je recupère les données nécessaire a l'initialisation de mon manager de réseau et je m'authentifie
+    self.networkMember = databaseGetmember(ntwkid)
+
+  EN CAS DE CREATION DE FICHIER
+    fileManager.write le fichier
+
+  EN CAS DE LECTURE DE FICHIER
+    fileManager.read le fichier
+
+  EN CAS DE NOUVEAU NOEUD NEW je l'ajoute aprèes avoir vérifié si ce n'est pas une erreur sinon je l'informe de l'erreur
+
+    nodeManager.genName
+    databasemanager.Node
+    networkManager.updateDB
+
+
+  EN CAS D'UPDATE DB je recupère le nom de la table cible et les info pour l'instance et je l'instancie
+    databasemanager.updateDB
+
+  EN CAS DE RECEPTION DE MORCEAU DE FICHIER je recupere le nom de code et je l'ajoute au fichier temporaire
+    fileManager.filemaker(code)
+
+
+client-side function order:
+
+    CLASS aquaClient
+      -__init__ = IF not GUI je parse les argument qui peuvent être -u username -p password
+      -checker  = je regarde si l'utilisateur est enregistré en local
+      -analyse  = en fonction de self.todo je fait ce qui est demandé
+
+    SI SELF.TODO EST UPLOAD
+      -upload   = alors je parse -P qui vaut le path du fichier a ouvrir je demande a mon networkManager d'utilisé l'exploder
+                  je demande au server d'utilisé son client pour envoyer les fihier avec todo a write_file
+                  je return le code
+
+    SI SMEF.TODO EST RETRIEVE
+      -retrieve = j'appelle mon networkmanager.filemanager.filemaker.new
+                  j'envoie un todo read_file au node avec le bon filecode

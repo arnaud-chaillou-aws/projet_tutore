@@ -1,5 +1,6 @@
 from twisted.python import log
 import sys
+import configparser
 
 class Colorized(log.FileLogObserver):
     def emit(self, eventDict):
@@ -13,6 +14,9 @@ class Colorized(log.FileLogObserver):
         log.FileLogObserver.emit(self, eventDict)
 
 OBSERVER = Colorized(sys.stdout)
+
+CONFIG = configparser.ConfigParser()
+CONFIG.read('/home/arnaud/projet_tutore/v4/server.config')
 
 """
 Use Exemple :

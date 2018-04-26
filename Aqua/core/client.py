@@ -4,7 +4,7 @@ from twisted.python import log
 from twisted.internet.protocol import Protocol, ClientFactory
 from twisted.internet import reactor, ssl
 import OpenSSL
-from setuplog import OBSERVER
+from config import OBSERVER
 
 
 class ClientProtocol(Protocol):
